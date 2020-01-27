@@ -16,6 +16,15 @@ excel配置数据，使用sproto读取
 取数据时，需要自己手动/10</br>
 如果可以，尝试把这个操作写到取数据的底层</br>
 
+## 使用方法
+当excel表结构修改时，执行export-sp.bat，生成新的.sproto文件</br>
+以及用于生成bytes的luaGen脚本和读取bytes的lua脚本</br>
+</br>
+当只是数值变动时，执行export-data.bat</br>
+打开Unity项目，点击菜单栏中的XLua/GenerateBytes</br>
+此时，生成新的bytes</br>
+</br>
+
 ### 公共结构体 gloablStruct.py
 不弄公共的结构体了，每个sproto单独处理</br>
 如果想把sproto拼接成一个文件，然后一个sproto.parse("")</br>
