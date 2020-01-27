@@ -1,0 +1,29 @@
+sproto
+类型
+
+integer
+string
+boolean
+
+sproto只支持integer类型
+配置浮点数类型
+    10.2
+    类型写成number10
+    数据直接填10.2
+
+存到bytes中的数据是10.2x10
+取数据时，需要自己手动/10
+如果可以，尝试把这个操作写到取数据的底层
+
+由于sproto的问题
+不用公共的结构体了，每个sproto单独处理
+如果想把sproto拼接成一个文件，然后一个sproto.parse("")
+这时候可以弄公共结构体
+
+excel2Lua.py
+此文件是生成.. 用于读取bytes的脚本
+只是示例，需根据项目自定义
+
+
+TODO
+C#的生成部分
