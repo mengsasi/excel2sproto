@@ -17,12 +17,17 @@ excel配置数据，使用sproto读取
 如果可以，尝试把这个操作写到取数据的底层</br>
 
 ## 使用方法
-当excel表结构修改时，执行export-sp.bat，生成新的.sproto文件</br>
-以及用于生成bytes的luaGen脚本和读取bytes的lua脚本</br>
+#### 路径设置
+setting.py
+#### 当excel表结构修改时，执行export-sp.bat</br>
+生成新的.sproto文件以及用于生成bytes的luaGen脚本和读取bytes的lua脚本</br>
 </br>
-当只是数值变动时，执行export-data.bat</br>
+#### 当只是数值变动时，执行export-data.bat</br>
 打开Unity项目，点击菜单栏中的XLua/GenerateBytes</br>
 此时，生成新的bytes</br>
+</br>
+#### 如果只想生成某一个excel的sproto和数据bytes</br>
+参考0-4测试配置表xxx.bat</br>
 </br>
 
 ### 公共结构体 gloablStruct.py
