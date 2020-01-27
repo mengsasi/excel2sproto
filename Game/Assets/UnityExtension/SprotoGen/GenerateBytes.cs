@@ -1,6 +1,7 @@
 ﻿using Game;
 using System;
 using UnityEditor;
+using UnityEngine;
 
 namespace UnityExtension {
 
@@ -16,8 +17,15 @@ namespace UnityExtension {
         [MenuItem( "XLua/Generate Bytes" )]
         public static void GenerateBytes() {
             Do( () => {
-                LuaMgr.Instance.DoFile( "LuaGen/AllGen" );
+                try {
+                    LuaMgr.Instance.DoFile( "LuaGen/AllGen" );
+                    Debug.Log( "generate bytes finish" );
+                }
+                catch( Exception e ) {
+                    Debug.Log( e.ToString() );
+                }
             } );
+            AssetDatabase.Refresh();
         }
 
     }

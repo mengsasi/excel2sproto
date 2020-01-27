@@ -22,7 +22,7 @@ local function GenBytes(spPath, jsonPath, bytesPath)
     Save(bytesPath, data_bytes)
 end
 
-local sprotoPath = "E:/Project/excel2sproto/Doc/ConfigGen/Sproto/TestConfig.sproto"
+local sprotoPath = "E:/Project/excel2sproto/Game/Assets/Res/Sproto/TestConfig.sproto"
 local jsonPath = "E:/Project/excel2sproto/Doc/ConfigGen/Json/TestConfigs.json"
 local bytesPath = "E:/Project/excel2sproto/Game/Assets/Res/Configs/TestConfigs.bytes"
 

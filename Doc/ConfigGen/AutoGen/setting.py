@@ -4,7 +4,7 @@ excelPath = "./"
 
 toolRoot = "./ConfigGen"
 
-sprotoPath = toolRoot + "/Sproto"
+#sprotoPath = toolRoot + "/Sproto"
 
 jsonPath = toolRoot + "/Json"
 
@@ -18,6 +18,7 @@ jsonPath = toolRoot + "/Json"
 
 # bytesPath = toolRoot + "/Bytes"
 
+sprotoPath = "../Game/Assets/Res/Sproto"
 
 luaPath = "../Game/Assets/Lua/Logic/Config"
 

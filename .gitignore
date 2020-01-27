@@ -6,3 +6,5 @@
 /Game/Assembly-CSharp-Editor.csproj
 /Game/Game.sln
 /Tool
+/Game/Temp
+/Doc/ConfigGen/AutoGen/__pycache__
