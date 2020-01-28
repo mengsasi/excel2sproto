@@ -16,6 +16,7 @@ def Gen(genDir, reqPath):
     for f in files:
         if os.path.splitext(f)[1] == ".lua":
             if f != "AllGen.lua":
+                f = f.replace('.lua', '')
                 file.write("\trequire(\"" + reqPath + f + "\")\n")
 
     file.write("}\n\nreturn allGen")

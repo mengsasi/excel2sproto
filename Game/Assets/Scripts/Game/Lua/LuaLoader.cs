@@ -8,9 +8,6 @@ namespace Game {
         public static void InitLoader( LuaEnv luaState ) {
             luaState.AddLoader( XLuaLoader );
             luaState.AddLoader( LuaFileLoader );
-#if UNITY_EDITOR
-            luaState.AddLoader( LuaEditorLoader );
-#endif
         }
 
         private static byte[] XLuaLoader( ref string fileName ) {
@@ -28,9 +25,15 @@ namespace Game {
             string fullName = LuaConst.LuaEditorDir + GetFullName( fileName );
             return LoadBytes( fullName );
         }
+
+        public static byte[] LuaEditorSPDLoader( ref string fileName ) {
+            string fullName = LuaConst.LuaEditorDir + "sprotodump/" + GetFullName( fileName );
+            return LoadBytes( fullName );
+        }
 #endif
 
         private static string GetFullName( string fileName ) {
+            fileName = fileName.Replace( '.', '/' );
             return string.Format( "{0}{1}", fileName, fileName.EndsWith( ".lua" ) ? "" : ".lua" );
         }
 

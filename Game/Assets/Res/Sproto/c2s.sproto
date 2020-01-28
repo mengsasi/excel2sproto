@@ -1,0 +1,15 @@
+.package {
+	type 0 : integer
+	session 1 : integer
+}
+
+login 1  {
+	request {
+		token 0 : string
+	}
+	response {
+		r 0 : integer
+		session 1 : integer
+		userid 2 : integer
+	}
+}

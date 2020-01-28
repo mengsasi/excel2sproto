@@ -36,11 +36,11 @@ local module = {
 
 
 ------------------------------- param -------------------------------------
-local param = parse_param(...)
-if not param or not module[param.dump_type] then
-  print(README)
-  return
-end
+-- local param = parse_param(...)
+-- if not param or not module[param.dump_type] then
+--   print(README)
+--   return
+-- end
 
 ------------------------------- parser -------------------------------------
 local function _gen_trunk_list(sproto_file, namespace)
@@ -52,7 +52,15 @@ local function _gen_trunk_list(sproto_file, namespace)
   return trunk_list
 end
 
-local m = module[param.dump_type]
-local trunk_list = _gen_trunk_list(param.sproto_file, param.namespace)
-local trunk, build = parse_core.gen_trunk(trunk_list)
-m(trunk, build, param)
+-- local m = module[param.dump_type]
+-- local trunk_list = _gen_trunk_list(param.sproto_file, param.namespace)
+-- local trunk, build = parse_core.gen_trunk(trunk_list)
+-- m(trunk, build, param)
+
+function Dump(...)
+  local param = parse_param(...)
+  local m = module[param.dump_type]
+  local trunk_list = _gen_trunk_list(param.sproto_file, param.namespace)
+  local trunk, build = parse_core.gen_trunk(trunk_list)
+  m(trunk, build, param)
+end

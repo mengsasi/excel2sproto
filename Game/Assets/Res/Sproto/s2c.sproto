@@ -1,0 +1,10 @@
+.package {
+	type 0 : integer
+	session 1 : integer
+}
+
+sync_full_charater 1 {
+	request {
+		userid 0 : integer
+	}
+}
