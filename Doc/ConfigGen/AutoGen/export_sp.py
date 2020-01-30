@@ -6,6 +6,7 @@ import excel2sproto
 import excel2LuaGen
 import excel2Lua
 import genAllGen
+import genAllLua
 
 def exportAll():
     path = setting.excelPath
@@ -25,6 +26,7 @@ def exportAll():
             excel2Lua.exportAll(absPath, setting.luaPath)
     
     genAllGen.Gen(setting.luaGenPath, setting.allGenRequirePath)
+    genAllLua.Gen(setting.luaPath, setting.allLuaRequirePath)
 
 if __name__ == '__main__':
     try:

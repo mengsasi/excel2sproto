@@ -1,13 +1,24 @@
-local sproto = require "sproto/sproto"
+TestConfigs = {}
 
-local LoadBytes = CS.Core.FileUtils.LoadBytes
+local Configs = {}
 
-local file = LoadBytes(Application.dataPath .. "/Res/Sproto/TestConfig.sproto")
+function TestConfigs.InitModule()
+    local data = ConfigMgr.ParseBytes("TestConfigs")
+    for k, v in pairs(data.AllTestConfig) do 
+        Configs[v.id] = v
+    end
+end
 
-local sp = sproto.parse(file)
+function TestConfigs.Get(id)
+    return Configs[id]
+end
 
-local bytes = LoadBytes(Application.dataPath .. "/Res/Configs/TestConfigs.bytes")
+function TestConfigs.GetAll()
+    local arr = {}
+    for k, v in pairs(Configs) do
+        table.insert(arr, v)
+    end
+    return arr
+end
 
-local data = sp:decode("TestConfigs", bytes)
-
-GameLog.SkyLog(data)
+return TestConfigs

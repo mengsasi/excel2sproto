@@ -3,10 +3,13 @@ require "main"
 function StartGame()
     Debug.Log("lua game start")
     require "Framework/Common/GameLog"
-    
-    -- require("LuaGen/AllGen")
 
-    require("Logic/Config/TestConfigs")
+    -- 测试读取
+    require("Logic/Config/ConfigMgr").Init()
+
+    local all = TestConfigs.GetAll()
+    GameLog.SkyLog(all)
+    
 end
 
 function StopGame()

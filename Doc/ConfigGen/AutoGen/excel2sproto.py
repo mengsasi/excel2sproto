@@ -79,7 +79,7 @@ def table2sproto(table, exportPath):
     config = table.cell_value(0, 0)
     configs = config + "s"
     
-    sprotoPath = exportPath + "/" + config + ".sproto"
+    sprotoPath = exportPath + "/" + configs + ".sproto"
     dir = os.path.dirname(sprotoPath)
     if dir and not os.path.exists(dir):
         os.makedirs(dir)

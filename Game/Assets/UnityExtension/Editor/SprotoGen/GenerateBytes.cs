@@ -33,8 +33,8 @@ namespace UnityExtension {
         [MenuItem( "XLua/Generate CS" )]
         public static void GenerateCS() {
             Do( () => {
-                string c2s = Application.dataPath + "/Res/Sproto/c2s.sproto";
-                string s2c = Application.dataPath + "/Res/Sproto/s2c.sproto";
+                string c2s = Application.dataPath + "/Res/Configs/Sproto/c2s.sproto";
+                string s2c = Application.dataPath + "/Res/Configs/Sproto/s2c.sproto";
                 string c2s_cs = Application.dataPath + "/Scripts/Core/Sproto/c2s.cs";
                 string s2c_cs = Application.dataPath + "/Scripts/Core/Sproto/s2c.cs";
                 LuaMgr.Instance.DoFile( "sprotodump" );

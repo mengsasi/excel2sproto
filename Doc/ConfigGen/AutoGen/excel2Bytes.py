@@ -15,7 +15,7 @@ def json2Bytes(table):
     configs = config + "s"
     
     #lua环境执行，lua脚本
-    print("需要借助游戏中的Lua环境，生成bytes " + config)
+    print("需要借助游戏中的Lua环境，生成bytes " + configs)
 
 def exportAll(excelPath):
     #生成json

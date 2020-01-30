@@ -11,11 +11,15 @@ local JSON = require "cjson"
 
 local Gen = {}
 
+local function MakeDir(path)
+    CS.Core.FileUtils.MakeDir(path)
+end
+
 local function Load(path)
     return CS.Core.FileUtils.Load(path)
 end
 
-local function Save(path, bytes)
+local function SaveBytes(path, bytes)
     CS.Core.FileUtils.SaveBytes(path, bytes)
 end
 
@@ -27,13 +31,14 @@ local function GenBytes(spPath, jsonPath, bytesPath)
         AllTestConfig = data
     }
     local data_bytes = sp:encode("TestConfigs", TestConfigs)
-    Save(bytesPath, data_bytes)
+    SaveBytes(bytesPath, data_bytes)
 end
 
 local sprotoPath = \"|sprotoPath|\"
 local jsonPath = \"|jsonPath|\"
 local bytesPath = \"|bytesPath|\"
 
+MakeDir(bytesPath)
 GenBytes(sprotoPath, jsonPath, bytesPath)
 
 return Gen'''
@@ -43,7 +48,7 @@ def genLuaFile(table, exportPath):
     config = table.cell_value(0, 0)
     configs = config + "s"
 
-    sprotoPath = setting.sprotoPath + "/" + config + ".sproto"
+    sprotoPath = setting.sprotoPath + "/" + configs + ".sproto"
     jsonPath = setting.jsonPath + "/" + configs + ".json"
     bytesPath = setting.bytesPath + "/" + configs + ".bytes"
     sprotoPath = os.path.abspath(sprotoPath)

@@ -1,0 +1,5 @@
+rd /s /q "Bytes"
+rd /s /q "Json"
+rd /s /q "Lua"
+rd /s /q "LuaGen"
+rd /s /q "Sproto"

@@ -1,16 +1,16 @@
-
 #这个目录是以bat所在目录为基准的，不是这个py文件为基准
 excelPath = "./"
 
 toolRoot = "./ConfigGen"
 
-#sprotoPath = toolRoot + "/Sproto"
-
 jsonPath = toolRoot + "/Json"
 
+#======Doc======#
+# sprotoPath = toolRoot + "/Sproto"
 
 # #游戏中读取bytes配置的lua脚本
 # luaPath = toolRoot + "/Lua"
+# allLuaRequirePath = "Logic/Config/"
 
 # #用于生成bytes的lua脚本
 # luaGenPath = toolRoot + "/LuaGen"
@@ -18,11 +18,13 @@ jsonPath = toolRoot + "/Json"
 
 # bytesPath = toolRoot + "/Bytes"
 
-sprotoPath = "../Game/Assets/Res/Sproto"
+#======Game======#
+sprotoPath = "../Game/Assets/Res/Configs/Sproto"
 
 luaPath = "../Game/Assets/Lua/Logic/Config"
+allLuaRequirePath = "Logic/Config/"
 
 luaGenPath = "../Game/Assets/Lua/Editor/LuaGen"
 allGenRequirePath = "LuaGen/"
 
-bytesPath = "../Game/Assets/Res/Configs"
+bytesPath = "../Game/Assets/Res/Configs/Bytes"

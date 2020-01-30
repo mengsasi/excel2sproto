@@ -3,34 +3,37 @@ import sys
 import codecs
 import traceback
 
-'''local allGen = {
-	require("TestConfigGen")
-}
-return allGen'''
+'''local AllConfigs = {}
+function AllConfigs.Init()
+    require("Logic/Config/UIConfigs")
+    ...
+end
+return AllConfigs'''
 
 def Gen(genDir, reqPath):
-    allGenPath = genDir + "/AllGen.lua"
+    allGenPath = genDir + "/AllConfigs.lua"
     dir = os.path.dirname(allGenPath)
     if dir and not os.path.exists(dir):
         os.makedirs(dir)
     file = codecs.open(allGenPath, "w", "utf-8")
 
-    file.write("local allGen = {\n")
+    file.write("local AllConfigs = {}\n\n")
+    file.write("function AllConfigs.Init()\n")
 
     files = os.listdir(genDir)
     for f in files:
         if os.path.splitext(f)[1] == ".lua":
-            if f != "AllGen.lua":
+            if f != "AllConfigs.lua" and f != "ConfigMgr.lua":
                 f = f.replace('.lua', '')
-                file.write("\trequire(\"" + reqPath + f + "\")\n")
+                file.write("\trequire(\"" + reqPath + f + "\").InitModule()\n")
 
-    file.write("}\n\nreturn allGen")
+    file.write("end\n\nreturn AllConfigs")
     file.close()
 
 if __name__ == '__main__':
     try:
         if len(sys.argv) < 2:
-            print('genAllGen argv error')
+            print('genAllLua argv error')
             os.system("pause")
             
         genDir = sys.argv[1]
