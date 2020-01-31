@@ -1,4 +1,4 @@
 
 function Main(...)
-	require "UIConfigGen"
+	-- TODO
 end
