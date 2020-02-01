@@ -1,25 +1,32 @@
 import os
 import sys
+import codecs
 import xlrd #http://pypi.python.org/pypi/xlrd
 import traceback
 
 import setting
 import excel2Json
 
-exportSprotoPath = setting.sprotoPath
-exportJsonPath = setting.jsonPath
-exportBytesPath = setting.bytesPath
-
 def json2Bytes(table):
     config = table.cell_value(0, 0)
     configs = config + "s"
     
     #lua环境执行，lua脚本
-    print("需要借助游戏中的Lua环境，生成bytes " + configs)
+    #方法一，在unity中生成bytes
+    # print("需要借助游戏中的Lua环境，生成bytes " + configs)
+    
+    luaFile = config + "Gen"
+    #方法二，用py调用sptotogen.exe生成bytes
+    cmd = "start {0} \"-3rd\" \"{1}\" \"-p\" \"{2}\" \"-f\" \"{3}\"".format(
+        setting.SprotoGenExe, 
+        setting.SprotoGenLua3rd,
+        setting.SprotoGenLua,
+        luaFile)
+    os.system(cmd)
 
 def exportAll(excelPath):
     #生成json
-    excel2Json.exportAll(excelPath, exportJsonPath)
+    excel2Json.exportAll(excelPath, setting.jsonPath)
 
     excel = xlrd.open_workbook(excelPath)
     allSheetNames = excel.sheet_names()

@@ -28,3 +28,10 @@ luaGenPath = "../Game/Assets/Lua/Editor/LuaGen"
 allGenRequirePath = "LuaGen/"
 
 bytesPath = "../Game/Assets/Res/Configs/Bytes"
+
+
+SprotoGenExe = "./ConfigGen/SprotoGen/SprotoGen.exe"
+# SprotoGenExe = "../Tool/SprotoGen/SprotoGen/bin/x64/Debug/SprotoGen.exe"
+SprotoGenLua3rd = "./ConfigGen/SprotoGen"
+SprotoGenLua = "./ConfigGen/LuaGen"
+

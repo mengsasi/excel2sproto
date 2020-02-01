@@ -1,6 +1,5 @@
 ﻿using Game;
 using System;
-using System.IO;
 using XLua;
 
 namespace SprotoGen {
@@ -11,19 +10,30 @@ namespace SprotoGen {
             string curDir = Environment.CurrentDirectory;
             try {
                 LuaMgr.Instance.Init();
-                if( args.Length == 4 ) {
-                    if( args[0] == "-d" ) {
-                        LuaMgr.Instance.SetEnv( Path.Combine( args[1], "lua_src" ) );
-                    }
-                    if( args[2] == "-s" ) {
-                        LuaMgr.Instance.DoString( args[3] );
-                    }
-                    else if( args[2] == "-f" ) {
-                        LuaMgr.Instance.DoFile( args[3] );
-                    }
+                //默认当前环境
+                LuaLoader.LuaSrcPath = curDir;
+                LuaLoader.LuaFilePath = curDir;
+                Params param = new Params( args );
+                var _3rd = param.GetOpt( OptData._3rd );
+                if( _3rd != null ) {
+                    LuaLoader.LuaSrcPath = _3rd.Data;
                 }
-                else {
-                    LuaMgr.Instance.SetEnv( Path.Combine( curDir, "lua_src" ) );
+                var _p = param.GetOpt( OptData._p );
+                if( _p != null ) {
+                    LuaLoader.LuaFilePath = _p.Data;
+                }
+                bool def = true;//默认执行main
+                var _s = param.GetOpt( OptData._s );
+                if( _s != null ) {
+                    def = false;
+                    LuaMgr.Instance.DoString( _s.Data );
+                }
+                var _f = param.GetOpt( OptData._f );
+                if( _f != null ) {
+                    def = false;
+                    LuaMgr.Instance.DoFile( _f.Data );
+                }
+                if( def ) {
                     LuaMgr.Instance.DoFile( "main" );
                     var func = LuaMgr.Instance.Get<LuaFunction>( "Main" );
                     func.Call( args );

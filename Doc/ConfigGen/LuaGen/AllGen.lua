@@ -1,5 +1,5 @@
 local allGen = {
-	require("TestConfigGen.lua")
+	require("TestConfigGen")
 }
 
 return allGen

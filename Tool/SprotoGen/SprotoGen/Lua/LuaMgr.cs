@@ -18,10 +18,6 @@ namespace Game {
             LuaLibrary.InitLibrary( LuaState );
         }
 
-        public void SetEnv( string path ) {
-            LuaLoader.RootPath = path;
-        }
-
         public void Exit() {
             LuaState.Dispose();
             LuaState = null;

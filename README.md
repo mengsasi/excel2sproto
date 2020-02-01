@@ -16,7 +16,7 @@ excel配置数据，使用sproto读取
 取数据时，需要自己手动/10</br>
 如果可以，尝试把这个操作写到取数据的底层</br>
 
-## 使用方法
+### 使用方法
 #### 路径设置
 setting.py
 #### 当excel表结构修改时，执行export-sp.bat</br>
@@ -40,6 +40,25 @@ setting.py
 只是示例，需根据项目自定义</br>
 </br>
 
-------
-### TODO</br>
-C#的生成部分</br>
+
+## SprotoGen.exe
+写了一个exe，python执行，直接生成Bytes</br>
+不需要Unity中点击菜单按钮生成了</br>
+</br>
+分x86，x64</br>
+TODO x86报错??</br>
+
+### LuaEnv注释
+AddSearcher(StaticLuaCallbacks.LoadFromResource, 4);</br>
+AddSearcher(StaticLuaCallbacks.LoadFromStreamingAssetsPath, -1);</br>
+translator.Alias(typeof(Type), "System.MonoType");</br>
+</br>
+
+### SprotoGen使用
+start SprotoGen.exe -3rd <path> -p <path> -s <string></br>
+
+> * -3rd lua中使用的第三方库路径（lua_src父目录）
+> * -p lua文件路径
+> * -s 执行DoString
+> * -f 执行DoFile
+> * 默认执行 exe目录下的main.lua的Main(...)方法
