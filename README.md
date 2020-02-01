@@ -52,6 +52,7 @@ TODO x86报错??</br>
 AddSearcher(StaticLuaCallbacks.LoadFromResource, 4);</br>
 AddSearcher(StaticLuaCallbacks.LoadFromStreamingAssetsPath, -1);</br>
 translator.Alias(typeof(Type), "System.MonoType");</br>
+StaticLuaCallbacks Print UnityEngine.Debug.Log("LUA: " + s);</br>
 </br>
 
 ### SprotoGen使用
