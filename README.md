@@ -55,7 +55,7 @@ translator.Alias(typeof(Type), "System.MonoType");</br>
 </br>
 
 ### SprotoGen使用
-start SprotoGen.exe -3rd <path> -p <path> -s <string></br>
+start SprotoGen.exe -3rd <!path> -p <!path> -s <!string></br>
 
 > * -3rd lua中使用的第三方库路径（lua_src父目录）
 > * -p lua文件路径
