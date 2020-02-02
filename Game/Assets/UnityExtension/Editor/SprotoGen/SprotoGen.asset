@@ -1,0 +1,23 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 65d58ed2d4aeacc4eb6b4822bbfd9f87, type: 3}
+  m_Name: SprotoGen
+  m_EditorClassIdentifier: 
+  Settings:
+  - Generate: 1
+    SprotoPath: /Res/Configs/Sproto/c2s.sproto
+    CSPath: /Scripts/Core/Sproto/c2s.cs
+    Namespace: C2S
+  - Generate: 1
+    SprotoPath: /Res/Configs/Sproto/s2c.sproto
+    CSPath: /Scripts/Core/Sproto/s2c.cs
+    Namespace: S2C
