@@ -23,6 +23,7 @@
 	numbers 5 : *integer
 	nitem 6 : nitem
 	ntest 7 : *ntest
+	cost 8 : string
 }
 
 .TestConfigs {

@@ -13,6 +13,10 @@ def collectStructInfo(table, ncols):
     for c in range(0, ncols):
         propName = table.cell_value(3, c)
         propType = table.cell_value(4, c)
+        if propName == "" or propType == "":
+            continue #跳过空列
+        if propType == "ignore":
+            continue
         if "number" in propType:
             propType = "integer"
         #没有- 并且有.
@@ -38,6 +42,10 @@ def collectArrayInfo(table, ncols):
     for c in range(0, ncols):
         propName = table.cell_value(3, c)
         propType = table.cell_value(4, c)
+        if propName == "" or propType == "":
+            continue #跳过空列
+        if propType == "ignore":
+            continue
         if "number" in propType:
             propType = "integer"
         if propName.find("-") != -1 and propName.find(".") == -1:
@@ -51,6 +59,10 @@ def collectStructArrayInfo(table, ncols):
     for c in range(0, ncols):
         propName = table.cell_value(3, c)
         propType = table.cell_value(4, c)
+        if propName == "" or propType == "":
+            continue #跳过空列
+        if propType == "ignore":
+            continue
         if "number" in propType:
             propType = "integer"
         if propName.find("-") != -1 and propName.find(".") != -1:
@@ -103,6 +115,8 @@ def table2sproto(table, exportPath):
             continue
         if "number" in propType:
             propType = "integer"
+        if propType == "json" or propType == "JSON":
+            propType = "string"
         if propName.find("-") != -1 and propName.find('.') != -1:
             #结构体数组
             propNames = propName.split("-")

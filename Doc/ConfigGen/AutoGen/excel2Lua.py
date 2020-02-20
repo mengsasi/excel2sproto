@@ -4,14 +4,30 @@ import codecs
 import xlrd #http://pypi.python.org/pypi/xlrd
 import traceback
 
+import excel2sproto
+
+'''
+local JSON = require "cjson"
+
+local function disposeValue(conf)
+    conf.tnumber = conf.tnumber / 10
+    conf.cost = JSON.decode(conf.cost)
+    return conf
+end
+'''
+
 lua = '''TestConfigs = {}
 
 local Configs = {}
 
+local function disposeValue(conf)
+||return conf
+end
+
 function TestConfigs.InitModule()
     local data = ConfigMgr.ParseBytes("TestConfigs")
     for k, v in pairs(data.AllTestConfig) do 
-        Configs[v.id] = v
+        Configs[v.id] = disposeValue(v)
     end
 end
 
@@ -31,9 +47,11 @@ return TestConfigs'''
 
 #TestConfig -> TestConfigs.lua
 def genLuaFile(table, exportPath):
+    nrows = table.nrows
+    ncols = table.ncols
     config = table.cell_value(0, 0)
     configs = config + "s"
-
+    
     luaPath = exportPath + "/" + configs + ".lua"
     dir = os.path.dirname(luaPath)
     if dir and not os.path.exists(dir):
@@ -43,6 +61,47 @@ def genLuaFile(table, exportPath):
     luaFile = lua
     luaFile = luaFile.replace('AllTestConfig', 'All' + config)
     luaFile = luaFile.replace('TestConfigs', configs)
+
+    disposeValueStr = ""
+    hasJSON = False
+
+    #处理浮点，JSON
+
+    #结构体，数组，结构体数组
+    sp_struct = excel2sproto.collectStructInfo(table, ncols)
+    sp_arr = excel2sproto.collectArrayInfo(table, ncols)
+    sp_struct_arr = excel2sproto.collectStructArrayInfo(table, ncols)
+
+    for c in range(0, ncols):
+        #第3行是属性 第4行是数据类型
+        propName = table.cell_value(3, c)
+        propType = table.cell_value(4, c)
+        if propName == "" or propType == "":
+            continue #跳过空列
+        if propType == "ignore":
+            continue
+        if propType == "json" or propType == "JSON":
+            jsonVal = "\tconf.{0} = JSON.decode(conf.{1})\n".format(propName, propName)
+            disposeValueStr = disposeValueStr + jsonVal
+            hasJSON = True
+
+        if propName.find("-") == -1 and propName.find('.') == -1:
+            if "number" in propType:
+                rate = propType.replace('number', '')
+                numVal = "\tconf.{0} = conf.{1} / {2}\n".format(propName, propName, rate)
+                disposeValueStr = disposeValueStr + numVal
+    
+    # sp_struct
+    # sp_arr
+    # sp_struct_arr
+    # 处理结构体，数组，里面的浮点数
+    # TODO
+
+    disposeValueStr = disposeValueStr + "\t"
+    luaFile = luaFile.replace('||', disposeValueStr)
+
+    if hasJSON == True:
+        luaFile = "local JSON = require \"cjson\"\n\n" + luaFile
 
     file.write(luaFile)
     file.close()
