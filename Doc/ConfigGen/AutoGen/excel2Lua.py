@@ -14,20 +14,19 @@ local function disposeValue(conf)
     conf.cost = JSON.decode(conf.cost)
     return conf
 end
+
+Configs[v.id] = disposeValue(v)
 '''
 
 lua = '''TestConfigs = {}
 
 local Configs = {}
-
-local function disposeValue(conf)
-||return conf
-end
+|disposeValue|
 
 function TestConfigs.InitModule()
     local data = ConfigMgr.ParseBytes("TestConfigs")
     for k, v in pairs(data.AllTestConfig) do 
-        Configs[v.id] = disposeValue(v)
+        Configs[v.id] = disposeValueVV
     end
 end
 
@@ -62,8 +61,9 @@ def genLuaFile(table, exportPath):
     luaFile = luaFile.replace('AllTestConfig', 'All' + config)
     luaFile = luaFile.replace('TestConfigs', configs)
 
-    disposeValueStr = ""
+    disposeValueStr = "\nlocal function disposeValue(conf)\n"
     hasJSON = False
+    hasDisFunc = False
 
     #处理浮点，JSON
 
@@ -84,12 +84,14 @@ def genLuaFile(table, exportPath):
             jsonVal = "\tconf.{0} = JSON.decode(conf.{1})\n".format(propName, propName)
             disposeValueStr = disposeValueStr + jsonVal
             hasJSON = True
+            hasDisFunc = True
 
         if propName.find("-") == -1 and propName.find('.') == -1:
             if "number" in propType:
                 rate = propType.replace('number', '')
                 numVal = "\tconf.{0} = conf.{1} / {2}\n".format(propName, propName, rate)
                 disposeValueStr = disposeValueStr + numVal
+                hasDisFunc = True
     
     # sp_struct
     # sp_arr
@@ -97,8 +99,13 @@ def genLuaFile(table, exportPath):
     # 处理结构体，数组，里面的浮点数
     # TODO
 
-    disposeValueStr = disposeValueStr + "\t"
-    luaFile = luaFile.replace('||', disposeValueStr)
+    disposeValueStr = disposeValueStr + "\treturn conf\nend"
+    if hasDisFunc == True:
+        luaFile = luaFile.replace('|disposeValue|', disposeValueStr)
+        luaFile = luaFile.replace('disposeValueVV', 'disposeValue(v)')
+    else:
+        luaFile = luaFile.replace('|disposeValue|', '')
+        luaFile = luaFile.replace('disposeValueVV', 'v')
 
     if hasJSON == True:
         luaFile = "local JSON = require \"cjson\"\n\n" + luaFile
