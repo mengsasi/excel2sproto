@@ -22,7 +22,6 @@ lua = '''TestConfigs = {}
 
 local Configs = {}
 |disposeValue|
-
 function TestConfigs.InitModule()
     local data = ConfigMgr.ParseBytes("TestConfigs")
     for k, v in pairs(data.AllTestConfig) do 
@@ -99,7 +98,7 @@ def genLuaFile(table, exportPath):
     # 处理结构体，数组，里面的浮点数
     # TODO
 
-    disposeValueStr = disposeValueStr + "\treturn conf\nend"
+    disposeValueStr = disposeValueStr + "\treturn conf\nend\n"
     if hasDisFunc == True:
         luaFile = luaFile.replace('|disposeValue|', disposeValueStr)
         luaFile = luaFile.replace('disposeValueVV', 'disposeValue(v)')
