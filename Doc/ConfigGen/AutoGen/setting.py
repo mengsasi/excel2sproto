@@ -35,4 +35,3 @@ SprotoGenExe = "./ConfigGen/SprotoGen/SprotoGen.exe"
 # SprotoGenExe = "../Tool/SprotoGen/SprotoGen/bin/x64/Debug/SprotoGen.exe"
 SprotoGenLua3rd = "./ConfigGen/SprotoGen"
 SprotoGenLua = toolRoot + "/LuaGen"
-
