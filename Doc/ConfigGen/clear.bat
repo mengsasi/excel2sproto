@@ -1,5 +1,7 @@
-rd /s /q "Bytes"
-rd /s /q "Json"
-rd /s /q "Lua"
-rd /s /q "LuaGen"
-rd /s /q "Sproto"
+REM rd /s /q "Bytes"
+REM rd /s /q "Json"
+REM rd /s /q "Lua"
+REM rd /s /q "LuaGen"
+REM rd /s /q "Sproto"
+
+rd /s /q "Temp"
