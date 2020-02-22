@@ -10,9 +10,9 @@ jsonPath = toolRoot + "/Json"
 
 # #游戏中读取bytes配置的lua脚本
 # luaPath = toolRoot + "/Lua"
-# allLuaRequirePath = "Logic/Config"
+# allLuaRequirePath = "Logic/Config/AutoGen"
 
-#用于生成bytes的lua脚本
+# 用于生成bytes的lua脚本
 luaGenPath = toolRoot + "/LuaGen"
 allGenRequirePath = ""
 
