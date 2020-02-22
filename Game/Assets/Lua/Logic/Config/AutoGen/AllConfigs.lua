@@ -1,7 +1,7 @@
 local AllConfigs = {}
 
 function AllConfigs.Init(RegisterModule)
-	RegisterModule("Logic/Config/TestConfigs")
+	RegisterModule("Logic/Config/AutoGen/TestConfigs")
 end
 
 return AllConfigs

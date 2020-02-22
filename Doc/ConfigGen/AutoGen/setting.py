@@ -10,9 +10,9 @@ jsonPath = toolRoot + "/Json"
 
 # #游戏中读取bytes配置的lua脚本
 # luaPath = toolRoot + "/Lua"
-# allLuaRequirePath = "Logic/Config/"
+# allLuaRequirePath = "Logic/Config"
 
-# #用于生成bytes的lua脚本
+#用于生成bytes的lua脚本
 luaGenPath = toolRoot + "/LuaGen"
 allGenRequirePath = ""
 
@@ -21,8 +21,8 @@ allGenRequirePath = ""
 #======Game======#
 sprotoPath = "../Game/Assets/Res/Configs/Sproto"
 
-luaPath = "../Game/Assets/Lua/Logic/Config"
-allLuaRequirePath = "Logic/Config/"
+luaPath = "../Game/Assets/Lua/Logic/Config/AutoGen"
+allLuaRequirePath = "Logic/Config/AutoGen"
 
 # #Unity引擎中菜单 XLua/GenerateBytes 所用目录
 # luaGenPath = "../Game/Assets/Lua/Editor/LuaGen"
@@ -32,6 +32,5 @@ bytesPath = "../Game/Assets/Res/Configs/Bytes"
 
 
 SprotoGenExe = "./ConfigGen/SprotoGen/SprotoGen.exe"
-# SprotoGenExe = "../Tool/SprotoGen/SprotoGen/bin/x64/Debug/SprotoGen.exe"
 SprotoGenLua3rd = "./ConfigGen/SprotoGen"
 SprotoGenLua = toolRoot + "/LuaGen"

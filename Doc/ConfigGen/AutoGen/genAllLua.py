@@ -4,8 +4,8 @@ import codecs
 import traceback
 
 '''local AllConfigs = {}
-function AllConfigs.Init()
-    require("Logic/Config/UIConfigs")
+function AllConfigs.Init(RegisterModule)
+    RegisterModule("Logic/Config/UIConfigs")
     ...
 end
 return AllConfigs'''
@@ -18,14 +18,14 @@ def Gen(genDir, reqPath):
     file = codecs.open(allGenPath, "w", "utf-8")
 
     file.write("local AllConfigs = {}\n\n")
-    file.write("function AllConfigs.Init()\n")
+    file.write("function AllConfigs.Init(RegisterModule)\n")
 
     files = os.listdir(genDir)
     for f in files:
         if os.path.splitext(f)[1] == ".lua":
-            if f != "AllConfigs.lua" and f != "ConfigMgr.lua":
+            if f != "AllConfigs.lua":
                 f = f.replace('.lua', '')
-                file.write("\trequire(\"" + reqPath + f + "\").InitModule()\n")
+                file.write("\tRegisterModule(\"" + reqPath + "/" + f + "\")\n")
 
     file.write("end\n\nreturn AllConfigs")
     file.close()

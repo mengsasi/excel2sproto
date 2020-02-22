@@ -21,8 +21,8 @@ function ConfigMgr.ParseBytes(configName)
     return sp:decode(configName, bytes)
 end
 
-function ConfigMgr.Init()
-    require("Logic/Config/AllConfigs").Init()
+function ConfigMgr.Init(RegisterModule)
+    require("Logic/Config/AutoGen/AllConfigs").Init(RegisterModule)
 
 end
 

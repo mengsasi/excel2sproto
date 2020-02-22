@@ -31,14 +31,17 @@ def move_file(source, target):
     shutil.move(source, target)
     
 def execute(cmd, source, target):
-    if cmd == 'copy':
-        copy_file(source, target)
-    elif cmd == 'copys':
-        copy_files(source, target)
-    elif cmd == 'move':
-        move_file(source, target)
-    else:
-        print('cmd not an operation')
+    try:
+        if cmd == 'copy':
+            copy_file(source, target)
+        elif cmd == 'copys':
+            copy_files(source, target)
+        elif cmd == 'move':
+            move_file(source, target)
+        else:
+            print('cmd not an operation')
+    except:
+        traceback.print_exc()
         
 if __name__ == "__main__":
     try:
