@@ -9,7 +9,8 @@ excel配置数据，使用sproto读取
 
 ## 配置
 可配置integer，string，boolean(bool)，JSON(json)，numberXX
-数组，结构体，结构体数组，参考测试配置
+支持数组，结构体，结构体数组，参考测试配置
+暂不支持结构体中含有数组（TODO）
 
 ### 配置浮点数类型
 numberXX</br>
